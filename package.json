@@ -1,8 +1,11 @@
 {
   "name": "expensify",
   "version": "1.0.0",
-  "main": "index.js",
-  "author": "Harold Haigh",
+  "main": "index.js",  
+  "engines": {
+    "node": "10.15.1"
+  },
+  "author": "HH",
   "license": "MIT",
   "scripts": {
     "build:dev": "webpack",
@@ -55,8 +58,5 @@
     "jest": "20.0.4",
     "react-test-renderer": "16.0.0",
     "webpack-dev-server": "^2.5.1"
-  },
-  "engines": {
-    "node": "10.15.1"
   }
 }
