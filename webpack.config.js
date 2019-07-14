@@ -3,7 +3,7 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-//Environment variable that stores the environment you are currently in L155
+//Environment variable that stores the environment you are currently in [L155]
 //process.env.NODE_ENV
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
