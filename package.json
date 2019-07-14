@@ -12,9 +12,6 @@
     "start": "node server/server.js",
     "heroku-postbuild": "yarn run build:prod"
   },
-  "engines":{
-      "node": "10.15.1"  
-  },
   "dependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "6.25.0",
@@ -26,7 +23,7 @@
     "css-loader": "^2.1.1",
     "express": "4.15.4",
     "extract-text-webpack-plugin": "3.0.0",
-    "firebase": "4.2.0",
+    "firebase": "^6.3.0",
     "live-server": "^1.2.1",
     "moment": "2.18.1",
     "node-sass": "^4.11.0",
@@ -58,5 +55,8 @@
     "jest": "20.0.4",
     "react-test-renderer": "16.0.0",
     "webpack-dev-server": "^2.5.1"
+  },
+  "engines": {
+    "node": "10.15.1"
   }
 }
