@@ -42,5 +42,28 @@ export const editExpense = (id, updates) => ({
     updates
 });
 
+// [L157 - Fetching expenses: part 1]
+// SET_EXPENSES
+export const setExpenses = (expenses) => ({
+    type: 'SET_EXPENSES',
+    expenses
+});
+
+// [L158 - Fetching expenses: part 2]
+export const startSetExpenses = (expenses = {}) => {
+    return (dispatch) => {
+        return database.ref('expenses').once('value').then((snapshot) => {
+            const expenses = [];
+                
+            snapshot.forEach((childSnapshot) => {
+                expenses.push({
+                    id: childSnapshot.key,
+                    ...childSnapshot.val()
+                });
+            });            
+            dispatch(setExpenses(expenses));
+        });
+    };
+};
 
 
