@@ -1,13 +1,14 @@
 import configureMockStore from 'redux-mock-store'; //Lesson 153
 import thunk from 'redux-thunk';
-import { 
-    startAddExpense, 
+import {     
     addExpense, 
+    startAddExpense, 
     editExpense, 
+    startEditExpense,
     removeExpense, 
+    startRemoveExpense,
     setExpenses, 
-    startSetExpenses,
-    startRemoveExpense} from '../../actions/expenses';
+    startSetExpenses} from '../../actions/expenses';
 import expenses from '../fixtures/expenses'; // Lesson 153 Testing Async Redux Actions
 import database from '../../firebase/firebase';
 
@@ -62,6 +63,29 @@ test('Should setup edit expense action object', () => {
         }
     })
 });
+
+// [L160 - Update expense]
+test('Should edit expense from firebase', (done) => {
+    const store = createMockStore({});
+    const id = expenses[0].id;
+    const updates = { amount: 21045 };
+    
+    store.dispatch(startEditExpense(id, updates)).then(() => {
+        const actions = store.getActions();
+        expect(actions[0]).toEqual({
+            type: 'EDIT_EXPENSE',
+            id,
+            updates
+        });
+        return database.ref(`expenses/${id}`).once('value');
+    }).then((snapshot) => {
+        expect(snapshot.val().amount).toBe(updates.amount);
+        done();
+    }).catch((e) => {
+        console.log(e);
+    }); 
+});
+
 
 test('Should setup add expense action object with provided values', () => {
 //    const expenseData = {
