@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import ExpenseForm from './ExpenseForm';
-import { editExpense, removeExpense } from '../actions/expenses';
+import { editExpense, startRemoveExpense } from '../actions/expenses';
 
 export class EditExpensePage extends React.Component{
 
@@ -12,7 +12,7 @@ export class EditExpensePage extends React.Component{
     };
     
     onRemove = () => {
-        this.props.removeExpense({id: this.props.expense.id});
+        this.props.startRemoveExpense({id: this.props.expense.id});
         this.props.history.push('/');
     };
     
@@ -41,10 +41,11 @@ const mapStateToProps = (state, props) => {
 
 
 // Props is needed for the second argument as removeExpense requires props object
+// startRemoveExpense [L159]
 const mapDispatchToProps = (dispatch, props) => {
     return {
         editExpense: (id, expense) => dispatch(editExpense(id, expense)),
-        removeExpense: (data) => dispatch(removeExpense(data))
+        startRemoveExpense: (data) => dispatch(startRemoveExpense(data))
     }
 };
 
